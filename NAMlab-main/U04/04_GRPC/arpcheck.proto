@@ -1,0 +1,14 @@
+syntax = "proto3";
+package get_arp2;
+
+service Get_arp2 {
+  rpc Get_it2 (arpRequest) returns (arpReply) {}
+}
+
+message arpRequest {
+  string query_content = 1;
+}
+
+message arpReply {
+  string arp_info = 1;
+}

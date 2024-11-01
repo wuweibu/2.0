@@ -1,0 +1,25 @@
+--- 
+- name: Create VLAN 100
+  hosts: cisco
+  gather_facts: no
+
+  tasks:
+    - name: Create vlan
+      cisco.ios.ios_vlans:
+        config:
+          - name: Vlan_10
+            vlan_id: 10
+            state: active
+            shutdown: disabled
+            remote_span: true
+      state: merged
+
+    - name: Display all VLANs
+      cisco.ios.ios_command:
+        commands:
+          - "show vlans"
+      register: vlan_output
+
+    - name: Print VLAN output
+      debug:
+        var: vlan_output.stdout
