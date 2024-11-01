@@ -29,4 +29,4 @@ def json_to_excel(file_path, col_names, excel_file):
 if __name__ == "__main__":
     ## Task3.设定列头名称并执行函数
     columns=['ID', '创建时间', '优先级', '站点', '状态']
-    json_to_excel('network_tech.json', columns, 'network.xlsx')
+    json_to_excel('D:/python自动化+AI/2.0/NAMlab-main/U03/02_网络业务数据处理/network_tech.json', columns, 'network.xlsx')

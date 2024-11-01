@@ -33,7 +33,7 @@ class NetData:
 
 
 if __name__ == "__main__":
-    net = NetData('netdata.csv')
+    net = NetData('D:/python自动化+AI/2.0/NAMlab-main/U03/03_网络流量数据处理/netdata.csv')
     main_asn = net.get_main_asn_list()
     net.proc_main_data(main_asn)
     net.show_result()
