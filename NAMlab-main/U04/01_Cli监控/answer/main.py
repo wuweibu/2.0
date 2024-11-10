@@ -21,11 +21,12 @@ class Net:
 
 class CISCO_CPU(Net):
     def __init__(self, inventory_dict):
-        super().__init__(inventory_dict)
+        super().__init__(inventory_dict)    #调用父类
         self.cpu_str = ['Current', 'FiveSec', 'OneMin', 'FiveMin']
 
     # CPU监控
     def get_cpu(self):
+        #输入命令
         cmd = 'show processes cpu'
         cpu_str = self.device.send_command(cmd)
         # 获取CPU使用率指标
