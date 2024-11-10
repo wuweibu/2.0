@@ -8,21 +8,17 @@ class Zabbix:
         self.zapi.login(api_token=token)
         self.inventory = {host['host']: host['hostid'] for host in self.zapi.host.get(monitored_hosts=1, output='extend')}
         self.data = {}
-        self.old_data = {'cisco_core':
-                             {'Cisco IOS: ICMP ping': '1',
-                              'Cisco IOS: ICMP loss': '0',
-                              'Cisco IOS: ICMP response time': '0.0'},
-                         'huawei_core':
-                             {'Huawei VRP: ICMP ping': '1',
-                              'Huawei VRP: ICMP loss': '0',
-                              'Huawei VRP: ICMP response time': '0.0'}}
+        self.old_data = {'huawei':
+                         {'Huawei VRP: ICMP ping': '1',
+                          'Huawei VRP: ICMP loss': '0',
+                          'Huawei VRP: ICMP response time': '0.0'}}
 
 
     def collector_host(self, device_name, prepare=False, metric_id_list=None):
         self.data[device_name] = {}
-        host_id = self.inventory[device_name]
-        result = self.zapi.item.get(hostids=host_id)
-        metrics: dict = {info['itemid']: info['name'] for info in result}
+        host_id = self.inventory[device_name]    #获取ID
+        result = self.zapi.item.get(hostids=host_id)  #获取这个设备的所有监控指标
+        metrics: dict = {info['itemid']: info['name'] for info in result}    #便利这个监控指标 形成字典
         # 如果对监控指标不太了解，请将prepare在使用函数时定义为True
         if prepare:
             with open(device_name + '_CheckMe.txt', 'w') as f:
