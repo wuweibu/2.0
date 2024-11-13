@@ -80,7 +80,9 @@ class HUAWEI_CPU(Net):
                 diff_now_v = cpu_now_v - self.diff_value_cache[cpu_name][i]
                 self.diff_value_cache[cpu_name][i] = diff_now_v
                 db.write_ts_data('HUAWEI_CPU_DIFF', [cpu_name+'_'+self.cpu_metric[i], diff_now_v])
-
+    def get_inter(self):
+        cmd = 'display  interface GigabitEthernet 0/0/23'
+        
 
 if __name__ == "__main__":
     cisco_monitor = CISCO_CPU(CISCO)

@@ -4,7 +4,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 # 这里替换为你的InfluxDB信息
 token = "liBqxf36G-l1F3pitK3G1eOsvH9S2cZ0B1eNfRYT941sV-G73VzfO_vkYBuCBZwaFSB6e0pFs6bzVVFCOHabOg=="
 org = "wwb"
-bucket = "U4"
+bucket = "wwb"
 influx_server = "http://10.10.100.20:8086"
 
 

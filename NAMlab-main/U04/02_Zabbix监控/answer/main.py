@@ -5,19 +5,21 @@ from zabbix import Zabbix
 # 这里修改为你的Zabbix Url 和 API Token          连接Zabbix
 url = "http://10.10.100.20:3031/"
 api_token = "3bd58993148a529c1264f2e0d21bc7d4120debf7f4226115f62cc7234c7abb79"
-zabbix_inst = Zabbix(url, api_token)
+zabbix_inst = Zabbix(url, api_token)  #登陆zabbix
 
-print(zabbix_inst.inventory)
+print(zabbix_inst.inventory)   #获取正在监控的主机 并输出
+
 
 db = DataWriter()
 
-metrics = {'huawei': ["47190", "47191", "47192"]}
+metrics = {'huawei': ['47190','47191','47192','47410','47411'],
+           'huawei2': ['47490','47491','47492','47757','47758']}
 
 def proc_restime(restime):
     return restime * 1000.
 
 while True:
-    for host_name in ['huawei']:
+    for host_name in ['huawei','huawei2']:
         zabbix_inst.collector_host(host_name, prepare=False, metric_id_list=metrics[host_name])
 
         for metric in zabbix_inst.data[host_name]:
